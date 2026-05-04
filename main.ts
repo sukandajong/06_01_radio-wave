@@ -1,15 +1,17 @@
-radio.onReceivedString(function (receivedString) {
+radio.onReceivedString(function on_received_string(receivedString: string) {
     if (receivedString == "C") {
         basic.showIcon(IconNames.Heart)
     } else if (receivedString == "W") {
         basic.showIcon(IconNames.No)
     }
+    
 })
 let is_active = false
 radio.setGroup(1)
 pins.setPull(DigitalPin.P13, PinPullMode.PullUp)
 pins.setPull(DigitalPin.P16, PinPullMode.PullUp)
-basic.forever(function () {
+basic.forever(function on_forever() {
+    
     if (pins.digitalReadPin(DigitalPin.P13) == 0) {
         is_active = true
         basic.showIcon(IconNames.Heart)
@@ -18,4 +20,5 @@ basic.forever(function () {
         basic.showIcon(IconNames.No)
         radio.sendString("W")
     }
+    
 })
